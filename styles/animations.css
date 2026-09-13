@@ -1,0 +1,55 @@
+/* Animaciones CSS-only: loops infinitos que no deben pasar por React. */
+
+@keyframes spark-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate3d(var(--spark-x, 0), var(--spark-y, -40px), 0) scale(0); opacity: 0; }
+}
+
+@keyframes scroll-cue {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+@keyframes web-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg); }
+}
+
+/* Jitter cromático: ±0.4px, ciclo de 4s. Imperceptible pero "vivo". */
+@keyframes chroma-jitter {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25%      { transform: translate3d(0.4px, -0.4px, 0); }
+  75%      { transform: translate3d(-0.4px, 0.4px, 0); }
+}
+
+@keyframes dash-march {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes stamp-fall {
+  0%   { transform: scale(1.6) rotate(-12deg); opacity: 0; }
+  60%  { transform: scale(0.96) rotate(-3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-4deg); opacity: 1; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+   Nivel 1 de reduced-motion: red de seguridad global.
+   Mata cualquier animación o transición CSS que se nos escape.
+   Los niveles 2-4 (MotionConfig, gates estructurales y motion-reduce:)
+   viven en el código de los componentes.
+   ─────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

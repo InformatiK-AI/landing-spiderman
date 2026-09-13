@@ -1,0 +1,91 @@
+/* Tema CSS-first de Tailwind v4.
+   `@theme` genera a la vez la CSS var y la utility. No hay tailwind.config.js. */
+
+@theme {
+  /* ─── Tinta y papel ─────────────────────────────────────────────── */
+  --color-ink-950: #07070c;
+  --color-ink-900: #0b0b12;
+  --color-ink-800: #15151f;
+  --color-ink-700: #23232f;
+  --color-ink-500: #5a5a6b; /* ⚠️ NUNCA texto sobre ink-900 */
+  --color-ink-300: #a9a9b8;
+  --color-ink-100: #e6e6ee;
+  --color-ink-050: #f5f5f7;
+  --color-paper-500: #f2efe6; /* crema de cómic impreso */
+
+  /* ─── Traje clásico ─────────────────────────────────────────────── */
+  --color-web-red-700: #8e1216; /* ⚠️ NUNCA texto */
+  --color-web-red-500: #e62429; /* 4.26:1 — sólo display ≥24px bold */
+  --color-web-red-300: #ff5a5f; /* 6.3:1 — texto pequeño y enlaces ✅ */
+  --color-web-blue-700: #0c2e6e;
+  --color-web-blue-500: #1a4fb4; /* 2.59:1 — ⚠️ NUNCA texto, sólo fondo */
+  --color-web-blue-300: #5b9dff; /* 7.1:1 ✅ */
+
+  /* ─── Iron Spider ───────────────────────────────────────────────── */
+  --color-iron-600: #9b1b1e;
+  --color-iron-gold-400: #c9a227; /* 7.96:1 ✅ */
+
+  /* ─── Sigilo (Far From Home) ────────────────────────────────────── */
+  --color-stealth-800: #101826;
+  --color-stealth-gold-400: #d4af57;
+
+  /* ─── Portal / multiverso ───────────────────────────────────────── */
+  --color-portal-500: #ff8a1f;
+  --color-portal-300: #ffc24d; /* color del anillo de foco */
+
+  /* ─── Semánticos ────────────────────────────────────────────────── */
+  --color-surface: var(--color-ink-900);
+  --color-on-surface: var(--color-ink-050);
+  --color-accent: var(--color-web-red-500);
+  --color-link: var(--color-web-red-300);
+
+  /* ─── Tipografía ────────────────────────────────────────────────── */
+  --font-display: var(--font-anton), "Arial Narrow", system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-sfx: var(--font-bangers), var(--font-anton), sans-serif;
+
+  --text-hook: clamp(3rem, 12vw, 10.5rem);
+  --text-hook--line-height: 0.86;
+  --text-hook--letter-spacing: -0.02em;
+  --text-chapter: clamp(6rem, 20vw, 18rem);
+  --text-chapter--line-height: 0.8;
+  --text-display: clamp(2.5rem, 6.5vw, 5.5rem);
+  --text-display--line-height: 0.94;
+  --text-h2: clamp(2rem, 4.5vw, 3.5rem);
+  --text-h2--line-height: 1.02;
+  --text-h3: clamp(1.375rem, 2.4vw, 2rem);
+  --text-h3--line-height: 1.15;
+  --text-lead: clamp(1.125rem, 1.6vw, 1.5rem);
+  --text-lead--line-height: 1.5;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-kicker: 0.8125rem;
+  --text-kicker--line-height: 1.2;
+  --text-kicker--letter-spacing: 0.18em;
+
+  /* ─── Espaciado ─────────────────────────────────────────────────── */
+  --spacing: 0.25rem; /* base de TODA la escala dinámica: p-13 funciona */
+  --spacing-section: clamp(5rem, 10vw, 9rem);
+  --spacing-gutter: clamp(1.25rem, 4vw, 3rem);
+  --container-content: 72rem;
+  --container-prose: 38rem;
+
+  /* ─── Movimiento ────────────────────────────────────────────────── */
+  --ease-snap: cubic-bezier(0.2, 0, 0, 1);
+  --ease-thwip: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-swing: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in-ink: cubic-bezier(0.7, 0, 0.84, 0);
+  --duration-instant: 120ms;
+  --duration-fast: 200ms;
+  --duration-base: 320ms;
+  --duration-slow: 520ms;
+  --duration-epic: 800ms;
+
+  /* ─── Forma ─────────────────────────────────────────────────────── */
+  --radius-panel: 2px; /* el cómic impreso no tiene esquinas redondeadas */
+  --shadow-panel: 6px 6px 0 0 var(--color-ink-950);
+}
+
+/* Variantes propias */
+@custom-variant hocus (&:hover, &:focus-visible);
+@custom-variant fine-pointer (@media (pointer: fine));

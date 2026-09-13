@@ -1,0 +1,84 @@
+/* Reset fino y comportamientos base. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* Anillo de foco en naranja portal: contrasta contra el rojo, el azul y el
+   negro por igual. Un anillo rojo sobre esta paleta sería invisible. */
+:focus-visible {
+  outline: 3px solid var(--color-portal-300);
+  outline-offset: 3px;
+  border-radius: var(--radius-panel);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background-color: var(--color-web-red-500);
+  color: var(--color-ink-050);
+}
+
+/* Área táctil mínima en controles */
+button,
+a[role="button"] {
+  min-height: 44px;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* Cualquier elemento con ancla necesita despejar el header */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}

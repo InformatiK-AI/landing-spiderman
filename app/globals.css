@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-/* Prueba de humo del tema CSS-first de Tailwind v4.
-   Si `bg-smoke-ink` y `text-smoke` aplican en el navegador, `@theme` funciona
-   y el proyecto no está cayendo en patrones de v3. Se reemplaza en #2. */
-@theme {
-  --color-smoke-ink: #0b0b12;
-  --color-smoke-red: #e62429;
-  --text-smoke: 2rem;
-  --text-smoke--line-height: 1.1;
-}
+@import "../styles/theme.css";
+@import "../styles/base.css";
+@import "../styles/animations.css";
