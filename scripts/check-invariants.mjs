@@ -73,6 +73,20 @@ for (const file of files.filter((f) => f.startsWith("components/") && /\.tsx$/.t
   }
 }
 
+// ── 5. Los <iframe> sólo pueden vivir en components/trailer/ ──────────────
+// Es lo que mantiene verificable el presupuesto de "cero terceros antes de
+// interactuar": un iframe suelto en otra sección lo rompería en silencio.
+for (const file of files.filter((f) => /\.tsx$/.test(f))) {
+  if (file.startsWith("components/trailer/")) continue;
+  const code = stripComments(readFileSync(file, "utf8"));
+  if (/<iframe/.test(code)) {
+    failures.push(
+      `${file}: contiene un <iframe>. Sólo components/trailer/ puede montar uno, ` +
+        `y sólo tras una interacción.`,
+    );
+  }
+}
+
 if (failures.length > 0) {
   console.error("\n❌ Invariantes incumplidas:\n");
   for (const f of failures) console.error(`  • ${f}`);
