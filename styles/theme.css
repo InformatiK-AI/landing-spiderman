@@ -44,7 +44,9 @@
   --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-sfx: var(--font-bangers), var(--font-anton), sans-serif;
 
-  --text-hook: clamp(3rem, 12vw, 10.5rem);
+  /* Bajado de 12vw/10.5rem: a ese tamaño cada línea del hook envolvía en
+     varias y el h1 medía 722px de alto, quedando fuera de la vista. */
+  --text-hook: clamp(2.25rem, 6.4vw, 6rem);
   --text-hook--line-height: 0.86;
   --text-hook--letter-spacing: -0.02em;
   --text-chapter: clamp(6rem, 20vw, 18rem);

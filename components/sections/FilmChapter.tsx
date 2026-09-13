@@ -56,11 +56,11 @@ export function FilmChapter({
               {film.titleEs ?? film.title}
             </h2>
             {film.titleEs ? (
-              <p className="mt-2 font-display text-kicker uppercase text-ink-300" lang="en">
+              <p className="mt-4 font-display text-kicker uppercase text-ink-300" lang="en">
                 {film.title}
               </p>
             ) : null}
-            <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-100">
+            <p className="mt-7 max-w-[var(--container-prose)] text-lead text-ink-100">
               {film.tagline}
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -77,7 +77,7 @@ export function FilmChapter({
         <p className="font-display text-kicker uppercase text-web-red-300">
           {CHAPTERS_COPY.beatsLabel}
         </p>
-        <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-300">
+        <p className="mt-8 max-w-[var(--container-prose)] text-lead text-ink-300">
           {film.synopsis}
         </p>
 

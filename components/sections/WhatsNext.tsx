@@ -26,7 +26,7 @@ export function WhatsNext({ film }: { film: Film }) {
         <div className="mt-5">
           <Badge tone="gold">{copy.badge}</Badge>
         </div>
-        <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-300">
+        <p className="mt-8 max-w-[var(--container-prose)] text-lead text-ink-300">
           {copy.body}
         </p>
       </div>

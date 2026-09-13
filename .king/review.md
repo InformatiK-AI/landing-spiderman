@@ -23,9 +23,18 @@
 | B4 | mayor | Desborde horizontal de 29px a 390px: la nav del header no cabía. | `flex-wrap` con gaps menores. |
 | B5 | menor | `WhoIsPeter` no tenía ancla de sección. | Añadida, consistente con el resto. |
 
+## Segunda ronda (revisión visual)
+
+| # | Severidad | Hallazgo | Resolución |
+|---|---|---|---|
+| C1 | **bloqueante** | **El titular del hero era invisible.** `PortalRing` traía `relative` en su base y el llamador pasaba `absolute`; gana el orden del stylesheet, así que el anillo de 1200px quedaba en flujo normal y empujaba el `h1` a `top: 1269px`, recortado por `overflow-hidden`. La auditoría estaba en verde. | El llamador decide la posición; `--text-hook` bajó de 12vw/10.5rem a 6.4vw/6rem. Dos comprobaciones nuevas en la auditoría. |
+| C2 | mayor | Las dos líneas del titular salían en rojo: `last:` acertaba siempre porque cada línea es hija única de su contenedor. | `SplitLines` acepta clase por índice. |
+| C3 | menor | El muro tipográfico decorativo a 18vw era el elemento más grande de la pantalla y le robaba jerarquía al titular. | Reducido a 7vw en cinco filas, como textura. |
+| C4 | menor | Los `h2` quedaban pegados a su párrafo de intro: con `line-height` 1.02 el `mt-6` se lee como la mitad. | `mt-8` consistente. |
+
 ## Conclusión
 
-5 bloqueantes, 3 mayores, 2 menores. Todos los bloqueantes resueltos en `fix` y
+6 bloqueantes, 4 mayores, 4 menores. Todos los bloqueantes resueltos en `fix` y
 vueltos a medir. **Ningún bloqueante se encontró leyendo el código**: los cinco
 salieron de ejecutar la auditoría en un navegador real. Es el argumento del
 proyecto para que el QA sea medido y no declarado.

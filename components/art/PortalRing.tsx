@@ -18,7 +18,11 @@ export function PortalRing({
   sparks?: boolean;
 }) {
   return (
-    <div className={cn("pointer-events-none relative aspect-square", className)} aria-hidden="true">
+    // Sin clase de posición propia: la pone el llamador. Si esta base trajera
+    // `relative`, un `absolute` del llamador NO ganaría —en Tailwind decide el
+    // orden del stylesheet, no el del atributo class— y el anillo quedaría en
+    // flujo normal empujando el contenido.
+    <div className={cn("pointer-events-none aspect-square", className)} aria-hidden="true">
       <svg viewBox="0 0 200 200" focusable="false" className="h-full w-full">
         <circle
           cx="100"

@@ -16,7 +16,7 @@ export function SuitGallery() {
   return (
     <SectionShell labelledBy={`${SUITS_COPY.headingId}-titulo`} id={SUITS_COPY.headingId} deferPaint>
       <SectionHeading id={`${SUITS_COPY.headingId}-titulo`}>{SUITS_COPY.heading}</SectionHeading>
-      <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-300">
+      <p className="mt-8 max-w-[var(--container-prose)] text-lead text-ink-300">
         {SUITS_COPY.intro}
       </p>
 

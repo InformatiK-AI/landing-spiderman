@@ -78,14 +78,25 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 grid select-none place-items-center overflow-hidden"
       >
-        <p className="rotate-[-8deg] font-display text-[18vw] leading-[0.8] text-ink-800/70 whitespace-nowrap">
-          {Array.from({ length: 4 }, () => HERO.forgottenName).join(" · ")}
-        </p>
+        {/* Textura de fondo, no protagonista: a 18vw era el elemento más grande
+            de la pantalla, le robaba jerarquía al titular y además se convertía
+            en el elemento LCP, contra la intención declarada del diseño. */}
+        <div className="flex -rotate-6 flex-col gap-2 opacity-40">
+          {Array.from({ length: 5 }, (_, row) => (
+            <p
+              key={row}
+              className="font-display text-[7vw] leading-[0.9] whitespace-nowrap text-ink-800"
+              style={{ marginLeft: `${(row % 2) * -6}vw` }}
+            >
+              {Array.from({ length: 5 }, () => HERO.forgottenName).join(" · ")}
+            </p>
+          ))}
+        </div>
       </div>
 
       <PortalRing
         sparks={!reduced}
-        className="absolute top-1/2 left-1/2 w-[min(120vw,75rem)] -translate-x-1/2 -translate-y-1/2 opacity-70"
+        className="absolute top-1/2 left-1/2 w-[min(120vw,60rem)] -translate-x-1/2 -translate-y-1/2 opacity-70"
       />
 
       <BendayOverlay />
@@ -108,7 +119,10 @@ export function Hero() {
             lines={HERO.lines}
             delay={0.32}
             animate={!reduced}
-            lineClassName="block last:text-web-red-500"
+            // Sólo la segunda línea va en acento. `last:` no servía: cada
+            // línea es hija única de su propio contenedor, así que la variante
+            // acertaba siempre y salían las dos en rojo.
+            lineClassName={(i) => (i === 1 ? "block text-web-red-500" : "block")}
           />
         </h1>
 

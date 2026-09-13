@@ -56,7 +56,7 @@ export function MultiversePortal() {
             className="absolute inset-0 grid place-items-center"
             style={reduced ? undefined : { scale, rotate }}
           >
-            <PortalRing sparks={!reduced} className="w-[min(90vw,42rem)]" />
+            <PortalRing sparks={!reduced} className="absolute w-[min(90vw,42rem)]" />
             <PortalRing sparks={false} className="absolute w-[min(66vw,30rem)] opacity-60" />
             <PortalRing sparks={false} className="absolute w-[min(44vw,20rem)] opacity-40" />
           </m.div>

@@ -15,11 +15,13 @@
 
 ## Auditoría en navegador (Chromium + axe-core)
 
-17 de 17 comprobaciones pasadas.
+19 de 19 comprobaciones pasadas.
 
 | # | Comprobación | Medición |
 |---|---|---|
 | 1 | Cero peticiones a terceros antes de interactuar | **0 peticiones** |
+| 1b | **El hook (h1) es visible en la primera pantalla** | h1 en [412..649] de 900px |
+| 1c | El LCP es texto del servidor, no una imagen ni un `background-image` | elemento LCP = `<p>` |
 | 2 | axe-core: 0 violaciones serias o críticas | **28 reglas pasadas, 0 violaciones de ningún nivel** |
 | 3 | CLS ≤ 0.02 | **CLS = 0.0000** |
 | 4 | LCP < 2000 ms | **180 ms** |
@@ -53,6 +55,24 @@ cambiando el tween de `CountUp` de `animate` de framer-motion a un
 arrastraba su módulo al chunk principal. El resto son React 19 + Next 15 (103 KB
 de base compartida) y el feature-set `domAnimation` de framer-motion. Se declara
 el incumplimiento del objetivo en lugar de redefinirlo.
+
+## Segunda ronda: un bloqueante que la auditoría no veía
+
+Las capturas de pantalla revelaron que **el titular del hero era invisible**, con la
+auditoría en verde. Causa raíz: `PortalRing` fijaba `relative` en sus propias clases
+y el llamador pasaba `absolute`; en Tailwind gana el orden del stylesheet, no el del
+atributo `class`, así que el anillo de 1200px quedaba **en flujo normal** y empujaba
+el `h1` a `top: 1269px`, donde el `overflow-hidden` del hero lo recortaba.
+
+axe, CLS y LCP seguían en verde porque ninguno pregunta *"¿se ve el titular?"*.
+Reparado (el llamador decide la posición; la escala tipográfica del hook bajó de
+12vw/10.5rem a 6.4vw/6rem) y se añadieron dos comprobaciones nuevas —1b y 1c— para
+que no pueda repetirse.
+
+Segundo defecto de la misma ronda: `lineClassName="block last:text-web-red-500"` pintaba
+**las dos** líneas del titular en rojo, porque cada línea es hija única de su propio
+contenedor y la variante `last:` acertaba siempre. `SplitLines` ahora acepta una
+función por índice.
 
 ## Lo que esta auditoría NO puede cerrar
 

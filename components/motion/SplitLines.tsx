@@ -20,7 +20,8 @@ export function SplitLines({
 }: {
   lines: readonly string[];
   className?: string;
-  lineClassName?: string;
+  /** Clase por línea. Como función recibe el índice, para acentuar una sola. */
+  lineClassName?: string | ((index: number) => string);
   delay?: number;
   /** false en reduced-motion: el titular aparece ya compuesto. */
   animate?: boolean;
@@ -31,7 +32,11 @@ export function SplitLines({
       {lines.map((line, i) => (
         <span key={line} aria-hidden="true" className="block overflow-hidden">
           <m.span
-            className={lineClassName ?? "block"}
+            className={
+              typeof lineClassName === "function"
+                ? lineClassName(i)
+                : (lineClassName ?? "block")
+            }
             initial={animate ? { y: "110%" } : false}
             animate={{ y: "0%" }}
             transition={{ ...SPRING.settle, delay: delay + i * STAGGER.lines }}

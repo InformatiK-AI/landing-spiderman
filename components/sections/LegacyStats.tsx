@@ -21,7 +21,7 @@ export function LegacyStats() {
 
       <div className="relative">
         <SectionHeading id={`${STATS_COPY.headingId}-titulo`}>{STATS_COPY.heading}</SectionHeading>
-        <p className="mt-6 text-lead text-ink-300">{STATS_COPY.intro}</p>
+        <p className="mt-8 text-lead text-ink-300">{STATS_COPY.intro}</p>
 
         <dl className="mt-12 grid gap-10 sm:grid-cols-2">
           {STATS.map((stat) => (

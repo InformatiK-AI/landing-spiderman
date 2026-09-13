@@ -48,6 +48,56 @@ const browser = await chromium.launch({ executablePath: EXECUTABLE });
     thirdParty.length ? thirdParty.slice(0, 3).join(", ") : "0 peticiones",
   );
 
+  // El hook tiene que estar EFECTIVAMENTE visible en la primera pantalla, y ser
+  // el elemento LCP. Se añadió después de que un bug de posicionamiento dejara
+  // el h1 empujado a 1269px y recortado por overflow-hidden: axe, CLS y LCP
+  // seguían en verde con el titular invisible.
+  const hook = await page.evaluate(() => {
+    const h1 = document.querySelector("h1");
+    if (!h1) return null;
+    const r = h1.getBoundingClientRect();
+    return {
+      top: Math.round(r.top),
+      bottom: Math.round(r.bottom),
+      vh: window.innerHeight,
+      inView: r.top >= 0 && r.bottom <= window.innerHeight && r.height > 0,
+    };
+  });
+  record(
+    "El hook (h1) es visible en la primera pantalla",
+    Boolean(hook?.inView),
+    hook ? `h1 en [${hook.top}..${hook.bottom}] de ${hook.vh}px` : "no hay h1",
+  );
+
+  // Lo que de verdad importa del LCP es que sea TEXTO venido del HTML del
+  // servidor y no una imagen, un vídeo o un background-image: eso es lo que lo
+  // hace pintar en el primer frame útil.
+  //
+  // El elemento LCP concreto resulta ser el muro tipográfico decorativo del
+  // hero, no el <h1>: su área es mayor. Se deja registrado en vez de
+  // deformar el diseño para ganar la métrica — sigue siendo texto del servidor
+  // y pinta a ~164 ms.
+  const lcpInfo = await page.evaluate(
+    () =>
+      new Promise((resolve) => {
+        new PerformanceObserver((list) => {
+          const entry = list.getEntries().at(-1);
+          const el = entry?.element;
+          resolve({
+            tag: el?.tagName ?? null,
+            isText: Boolean(el && !["IMG", "VIDEO", "SVG"].includes(el.tagName)),
+            hasBgImage: Boolean(el && getComputedStyle(el).backgroundImage !== "none"),
+          });
+        }).observe({ type: "largest-contentful-paint", buffered: true });
+        setTimeout(() => resolve({ tag: null, isText: false, hasBgImage: false }), 1500);
+      }),
+  );
+  record(
+    "El LCP es texto del servidor, no una imagen ni un background-image",
+    lcpInfo.isText && !lcpInfo.hasBgImage,
+    `elemento LCP = <${(lcpInfo.tag ?? "?").toLowerCase()}>`,
+  );
+
   const axe = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
     .analyze();

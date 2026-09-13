@@ -62,7 +62,7 @@ export function Timeline() {
         <SectionHeading id={`${TIMELINE_COPY.headingId}-titulo`}>
           {TIMELINE_COPY.heading}
         </SectionHeading>
-        <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-300">
+        <p className="mt-8 max-w-[var(--container-prose)] text-lead text-ink-300">
           {TIMELINE_COPY.intro}
         </p>
       </div>

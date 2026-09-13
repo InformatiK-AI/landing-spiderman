@@ -131,8 +131,12 @@ continuidad narrativa, no un corte.
 
 ### Por qué este y no los otros dos
 
-1. **El LCP es texto, no arte.** El `h1` pinta en el primer frame posible; el portal es un
-   `clip-path` sobre una capa ya compuesta.
+1. **El LCP es texto del servidor, no una imagen.** El `h1` pinta en el primer frame
+   posible; el portal es un `clip-path` sobre una capa ya compuesta.
+   Medido: LCP a **164 ms**. El elemento LCP concreto resulta ser el muro tipográfico
+   decorativo del hero y no el `h1`, porque su área es mayor — se deja así en lugar de
+   deformar el diseño para ganar la métrica: sigue siendo texto venido del HTML del
+   servidor, que es lo que hace que pinte de inmediato.
 2. **Planta un motivo que se paga después** en `MultiversePortal`. Los otros dos son trucos
    autocontenidos.
 3. **El copy hace el trabajo pesado**: "nadie iba a recordar su nombre / así que se lo jugó
