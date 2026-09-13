@@ -16,7 +16,14 @@ import type { Film } from "@/content/types";
  * los hace entrar, nunca decide su contenido. Así un lector de pantalla lee el
  * arco completo de forma lineal.
  */
-export function FilmChapter({ film }: { film: Film }) {
+export function FilmChapter({
+  film,
+  showTrailer = true,
+}: {
+  film: Film;
+  /** false cuando el estado de la película no justifica ofrecer un tráiler. */
+  showTrailer?: boolean;
+}) {
   const anchor = filmAnchor(film.slug);
   const headingId = `${anchor}-titulo`;
   const [primary, secondary, accent] = film.palette;
@@ -122,19 +129,21 @@ export function FilmChapter({ film }: { film: Film }) {
         </Reveal>
 
         {/* ── Tráiler ────────────────────────────────────────────────── */}
-        <Reveal className="mt-16">
-          <p className="font-display text-kicker uppercase text-web-red-300">
-            {CHAPTERS_COPY.trailerLabel}
-          </p>
-          <div className="mt-4">
-            <LiteYouTube
-              trailer={TRAILERS[film.slug]}
-              title={film.titleEs ?? film.title}
-              year={film.year}
-              palette={film.palette}
-            />
-          </div>
-        </Reveal>
+        {showTrailer ? (
+          <Reveal className="mt-16">
+            <p className="font-display text-kicker uppercase text-web-red-300">
+              {CHAPTERS_COPY.trailerLabel}
+            </p>
+            <div className="mt-4">
+              <LiteYouTube
+                trailer={TRAILERS[film.slug]}
+                title={film.titleEs ?? film.title}
+                year={film.year}
+                palette={film.palette}
+              />
+            </div>
+          </Reveal>
+        ) : null}
 
         {film.caveat ? (
           <p className="mt-10 max-w-[var(--container-prose)] text-ink-300">

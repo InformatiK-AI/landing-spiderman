@@ -1,5 +1,7 @@
 /** Copy transversal. Todo el texto en es-CL del sitio sale de content/. */
 
+import type { ReleaseStatus } from "./types";
+
 export const HERO = {
   eyebrow: "Cuatro películas · un mismo cabro de Queens",
   lines: ["Nadie iba a recordar su nombre.", "Así que se lo jugó todo."],
@@ -92,3 +94,48 @@ export const NAV = {
   sections: "Secciones",
   progressLabel: "Progreso de lectura",
 } as const;
+
+/**
+ * Copy del capítulo cuatro gobernado por su `status`.
+ *
+ * `Record<ReleaseStatus, …>` fuerza exhaustividad: si se agrega un estado nuevo
+ * al tipo, el compilador rompe el build hasta que se escriba su copy. Cambiar
+ * `status` en content/films/brand-new-day.ts reconfigura kicker, título, cuerpo,
+ * badge y la presencia del tráiler con UN solo cambio de línea.
+ */
+export const BRAND_NEW_DAY_COPY: Record<
+  ReleaseStatus,
+  {
+    kicker: string;
+    heading: string;
+    body: string;
+    badge: string;
+    /** Si es false, no se renderiza el bloque de tráiler. */
+    showTrailer: boolean;
+  }
+> = {
+  estrenada: {
+    kicker: "Capítulo cuatro · ya en cines",
+    heading: "Y el arco sigue",
+    body:
+      "Un Nuevo Día se estrenó el 31 de julio de 2026 y se convirtió en la película más taquillera del año y en la Spider-Man más taquillera de la historia. Es la consecuencia directa del final de No Way Home: el único que recuerda a Peter Parker es Peter Parker.",
+    badge: "Estrenada",
+    showTrailer: true,
+  },
+  anunciada: {
+    kicker: "Capítulo cuatro · anunciado",
+    heading: "Lo que viene",
+    body:
+      "La cuarta película está anunciada pero todavía no se estrena. Lo que se sabe viene de material oficial; lo que circula como rumor no entra acá.",
+    badge: "Estreno anunciado",
+    showTrailer: true,
+  },
+  "sin-fecha": {
+    kicker: "Capítulo cuatro · sin fecha",
+    heading: "Lo que viene",
+    body:
+      "Hay una cuarta película confirmada, pero sin fecha de estreno publicada. Cuando haya material oficial, esta sección se actualiza.",
+    badge: "Sin fecha",
+    showTrailer: false,
+  },
+};
