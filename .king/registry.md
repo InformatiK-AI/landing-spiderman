@@ -17,9 +17,9 @@
 
 | Campo | Valor |
 |---|---|
-| `phase` | `build` |
-| `stage` | 4 / 8 |
-| `blockers` | 2 (escritura en GitHub denegada — ver abajo) |
+| `phase` | `ship` |
+| `stage` | 8 / 8 |
+| `blockers` | 1 abierto (escritura en GitHub denegada) + 1 para la persona (verificar tráilers) |
 
 ## Modo de ejecución: manual
 
@@ -49,11 +49,11 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | 1 | `init` | ✅ hecho | `.king/registry.md`, `docs/PIPELINE.md`, `docs/BRIEF.md` | Estructura creada |
 | 2 | `spec` | ✅ hecho | `.king/spec.md`, `docs/CONTENIDO.md`, `docs/DESIGN.md` | 7 requirements, 12 scenarios |
 | 3 | `tasks` | ⚠️ parcial | `.king/tasks.md`, `.king/issues.json` | 16 tareas definidas; **no se pudieron crear los issues** |
-| 4 | `build` | 🔄 en curso | código | 1 tarea = 1 commit |
-| 5 | `review` | ⏳ pendiente | `.king/review.md` | Dual-blind |
-| 6 | `qa` | ⏳ pendiente | `.king/qa.md` | Medido, no declarado |
-| 7 | `fix` | ⏳ pendiente | `.king/fix.md` | Sólo si hay bloqueantes |
-| 8 | `ship` | ⏳ pendiente | push | **Se detiene antes de merge/tag** |
+| 4 | `build` | ✅ hecho | código | 16/16 tareas, 1 commit por tarea |
+| 5 | `review` | ✅ hecho | `.king/review.md` | 5 bloqueantes, 3 mayores, 2 menores |
+| 6 | `qa` | ✅ hecho | `.king/qa.md` | 17/17 en navegador |
+| 7 | `fix` | ✅ hecho | `.king/fix.md` | 5/5 bloqueantes resueltos y re-medidos |
+| 8 | `ship` | ⚠️ bloqueado | — | **`git push` devuelve 403**: la GitHub App no está instalada para la organización |
 
 ## Registro de puertas
 
@@ -62,16 +62,24 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | G-init | `init` | Registry y estructura existen | ✅ pasa | 2026-09-13 |
 | G-spec | `spec` | Requirements + scenarios + inventario verificado + aprobación | ✅ pasa | 2026-09-13 |
 | G-tasks | `tasks` | 16 tareas independientes, conteo = expected_count | ⚠️ pasa con bloqueante | 2026-09-13 |
+| G-build | `build` | 16/16 tareas, repo compilando tras cada commit | ✅ pasa | 2026-09-13 |
+| G-review | `review` | Dos pasadas independientes, hallazgos registrados | ✅ pasa | 2026-09-13 |
+| G-qa | `qa` | Cadena estática limpia + 17/17 en navegador | ✅ pasa | 2026-09-13 |
+| G-fix | `fix` | Cero bloqueantes abiertos, todos re-medidos | ✅ pasa | 2026-09-13 |
+| G-ship | `ship` | Commits subidos a la rama designada | ❌ **falla**: 403 en `git push` | 2026-09-13 |
 
 ## Conteos esperados (verificación tipo Gate 24)
 
 | Métrica | `expected_count` | Real | Estado |
 |---|---|---|---|
-| Issues de implementación | 16 | — | pendiente |
-| Películas en la capa de contenido | 7 (4 solo + 3 ensemble) | — | pendiente |
-| Capítulos renderizados | 4 | — | pendiente |
-| Tráilers embebidos | 7 | — | pendiente |
-| Secciones de página | 9 | — | pendiente |
+| Tareas de implementación | 16 | 16 | ✅ |
+| Issues creados en GitHub | 16 | **0** | ❌ escritura denegada (403) |
+| Películas en la capa de contenido | 7 (4 solo + 3 ensemble) | 7 | ✅ |
+| Capítulos renderizados | 4 | 4 | ✅ |
+| Tráilers en la página | 4 + 1 en modal | 5 | ✅ |
+| Tráilers verificados | 7 | **0** | ❌ YouTube bloqueado |
+| Secciones de página | 9 | 9 | ✅ |
+| Commits (1 por tarea + pipeline) | — | 16 | ✅ |
 
 Si `expected_count` cambia, la puerta falla y hay que actualizar esta tabla
 explícitamente antes de continuar.
