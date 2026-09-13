@@ -1,0 +1,84 @@
+/* Texturas de cómic, 100% CSS. Cero archivos: nada de rasters en el repo.
+   Regla: estas capas son ESTÁTICAS. No se anima mix-blend-mode, mask-image ni
+   background-position — forzarían repaint de toda la capa. Lo que se mueve va
+   encima. */
+
+/* Ben-day: dos capas CMYK desfasadas → roseta de impresión, no una grilla. */
+@utility texture-benday {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(
+        circle at 1px 1px,
+        color-mix(in oklab, var(--color-web-red-500) 55%, transparent) 1.15px,
+        transparent 1.35px
+      ),
+      radial-gradient(
+        circle at 1px 1px,
+        color-mix(in oklab, var(--color-web-blue-500) 45%, transparent) 1.15px,
+        transparent 1.35px
+      );
+    background-size:
+      6px 6px,
+      6px 6px;
+    background-position:
+      0 0,
+      3px 3px; /* el desfase es lo que produce la roseta */
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+}
+
+/* El degradé de puntos clásico: máscara alpha sobre la capa de ben-day. */
+@utility halftone-fade {
+  &::before {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 70%);
+  }
+}
+
+/* Grano de papel: feTurbulence como data-URI. Sin petición extra. */
+@utility texture-grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Trama de telaraña de fondo: radios con conic + arcos con repeating-radial.
+   Las telarañas "de verdad" del hero son SVG (WebPattern). */
+@utility texture-web {
+  background-image:
+    repeating-conic-gradient(
+      from 0deg at var(--web-x, 50%) var(--web-y, 0%),
+      color-mix(in oklab, var(--color-ink-050) 8%, transparent) 0deg 0.35deg,
+      transparent 0.35deg 15deg
+    ),
+    repeating-radial-gradient(
+      circle at var(--web-x, 50%) var(--web-y, 0%),
+      transparent 0 46px,
+      color-mix(in oklab, var(--color-ink-050) 7%, transparent) 46px 47px
+    );
+}
+
+/* Viñeta impresa: borde duro y sombra sólida. Sin esquinas redondeadas. */
+@utility panel-ink {
+  border: 3px solid var(--color-ink-950);
+  box-shadow: var(--shadow-panel);
+  background: var(--color-ink-900);
+  border-radius: var(--radius-panel);
+}
