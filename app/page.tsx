@@ -2,6 +2,7 @@ import { FilmChapter } from "@/components/sections/FilmChapter";
 import { FilmsSpine } from "@/components/sections/FilmsSpine";
 import { Hero } from "@/components/sections/Hero";
 import { MultiversePortal } from "@/components/sections/MultiversePortal";
+import { LegacyStats } from "@/components/sections/LegacyStats";
 import { SuitGallery } from "@/components/sections/SuitGallery";
 import { Timeline } from "@/components/sections/Timeline";
 import { WhoIsPeter } from "@/components/sections/WhoIsPeter";
@@ -21,6 +22,7 @@ export default function Home() {
         <FilmChapter film={getFilm("brand-new-day")} />
       </FilmsSpine>
       <SuitGallery />
+      <LegacyStats />
     </>
   );
 }
