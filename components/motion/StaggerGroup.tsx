@@ -62,3 +62,5 @@ export const staggerChild = {
 } as const;
 
 export const StaggerItem = m.div;
+/** Para listas: evita envolver un <li> en un div, que seria HTML invalido. */
+export const StaggerListItem = m.li;
