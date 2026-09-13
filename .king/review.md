@@ -34,7 +34,13 @@
 
 ## Conclusión
 
-6 bloqueantes, 4 mayores, 4 menores. Todos los bloqueantes resueltos en `fix` y
-vueltos a medir. **Ningún bloqueante se encontró leyendo el código**: los cinco
-salieron de ejecutar la auditoría en un navegador real. Es el argumento del
-proyecto para que el QA sea medido y no declarado.
+6 bloqueantes, 4 mayores, 4 menores. Todos resueltos en `fix` y vueltos a medir.
+
+**Ningún bloqueante se encontró leyendo el código.** Cinco (A1, A2, B1, B2, B3)
+salieron de ejecutar la auditoría en un navegador real. El sexto —C1, el titular
+invisible, y el peor de todos— no lo detectó ni la auditoría: apareció al **mirar una
+captura de pantalla** con las 17 comprobaciones automáticas en verde.
+
+Ése es el argumento del proyecto, en dos niveles: el QA se mide y no se declara, y
+**una suite entera en verde no prueba que lo primero que ve una persona se vea**. La
+lección quedó incorporada como comprobaciones 1b y 1c.

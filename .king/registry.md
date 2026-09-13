@@ -50,9 +50,9 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | 2 | `spec` | ✅ hecho | `.king/spec.md`, `docs/CONTENIDO.md`, `docs/DESIGN.md` | 7 requirements, 12 scenarios |
 | 3 | `tasks` | ⚠️ parcial | `.king/tasks.md`, `.king/issues.json` | 16 tareas definidas; **no se pudieron crear los issues** |
 | 4 | `build` | ✅ hecho | código | 16/16 tareas, 1 commit por tarea |
-| 5 | `review` | ✅ hecho | `.king/review.md` | 5 bloqueantes, 3 mayores, 2 menores |
-| 6 | `qa` | ✅ hecho | `.king/qa.md` | 17/17 en navegador |
-| 7 | `fix` | ✅ hecho | `.king/fix.md` | 5/5 bloqueantes resueltos y re-medidos |
+| 5 | `review` | ✅ hecho | `.king/review.md` | 6 bloqueantes, 4 mayores, 4 menores (dos rondas) |
+| 6 | `qa` | ✅ hecho | `.king/qa.md` | 19/19 en navegador |
+| 7 | `fix` | ✅ hecho | `.king/fix.md` | 6/6 bloqueantes resueltos y re-medidos |
 | 8 | `ship` | ⚠️ bloqueado | — | **`git push` devuelve 403**: la GitHub App no está instalada para la organización |
 
 ## Registro de puertas
@@ -64,7 +64,7 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | G-tasks | `tasks` | 16 tareas independientes, conteo = expected_count | ⚠️ pasa con bloqueante | 2026-09-13 |
 | G-build | `build` | 16/16 tareas, repo compilando tras cada commit | ✅ pasa | 2026-09-13 |
 | G-review | `review` | Dos pasadas independientes, hallazgos registrados | ✅ pasa | 2026-09-13 |
-| G-qa | `qa` | Cadena estática limpia + 17/17 en navegador | ✅ pasa | 2026-09-13 |
+| G-qa | `qa` | Cadena estática limpia + 19/19 en navegador | ✅ pasa | 2026-09-13 |
 | G-fix | `fix` | Cero bloqueantes abiertos, todos re-medidos | ✅ pasa | 2026-09-13 |
 | G-ship | `ship` | Commits subidos a la rama designada | ❌ **falla**: 403 en `git push` | 2026-09-13 |
 
@@ -79,7 +79,7 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | Tráilers en la página | 4 + 1 en modal | 5 | ✅ |
 | Tráilers verificados | 7 | **0** | ❌ YouTube bloqueado |
 | Secciones de página | 9 | 9 | ✅ |
-| Commits (1 por tarea + pipeline) | — | 16 | ✅ |
+| Commits (1 por tarea + pipeline) | — | 20 | ✅ |
 
 Si `expected_count` cambia, la puerta falla y hay que actualizar esta tabla
 explícitamente antes de continuar.

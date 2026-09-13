@@ -24,7 +24,7 @@
 | 1c | El LCP es texto del servidor, no una imagen ni un `background-image` | elemento LCP = `<p>` |
 | 2 | axe-core: 0 violaciones serias o críticas | **28 reglas pasadas, 0 violaciones de ningún nivel** |
 | 3 | CLS ≤ 0.02 | **CLS = 0.0000** |
-| 4 | LCP < 2000 ms | **180 ms** |
+| 4 | LCP < 2000 ms | **144–188 ms** según la corrida |
 | 5 | El botón de tráiler recibe foco por teclado | `activeElement = BUTTON` |
 | 6 | El iframe se monta sólo tras la interacción | 1 iframe y 1 petición a YouTube **después** del clic |
 | 7 | El modal abre y el foco queda dentro | `open=true`, foco contenido |
@@ -35,13 +35,13 @@
 | 12 | Reduced-motion: cronología y multiverso colapsan | 1374px y 649px con viewport de 900px (sin 320vh/200vh) |
 | 13 | Reduced-motion: todas las secciones visibles | **6/6** |
 | 14 | Reduced-motion: axe limpio | ✅ |
-| 15–17 | Sin scroll horizontal a 390 / 768 / 1440 px | **0px de desborde en los tres** |
+| 17–19 | Sin scroll horizontal a 390 / 768 / 1440 px | **0px de desborde en los tres** |
 
 ## Presupuesto
 
 | Métrica | Objetivo | Techo | Medido | Estado |
 |---|---|---|---|---|
-| LCP | < 1.5 s | 2.0 s | **180 ms** | ✅ |
+| LCP | < 1.5 s | 2.0 s | **144–188 ms** | ✅ |
 | CLS | 0.00 | 0.02 | **0.0000** | ✅ |
 | JS primera carga de `/` | ≤ 120 KB | 145 KB | **135 KB** | ⚠️ sobre el objetivo, bajo el techo |
 | Peticiones a terceros antes de interactuar | 0 | 0 | **0** | ✅ |
@@ -91,7 +91,7 @@ dev y la nota visible en la tarjeta.
 | Criterio | Resultado |
 |---|---|
 | Cadena estática limpia | ✅ |
-| 17/17 en navegador | ✅ |
-| Bloqueantes de `review` resueltos y vueltos a medir | ✅ 5/5 |
+| 19/19 en navegador | ✅ |
+| Bloqueantes de `review` resueltos y vueltos a medir | ✅ 6/6 |
 | Presupuesto dentro de los techos | ✅ (con el objetivo de JS declarado como no cumplido) |
 | Verificación de tráilers | ❌ **imposible en este entorno** — queda como acción para la persona |
