@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { fontVariables } from "./fonts";
 import "./globals.css";
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es-CL" className={fontVariables}>
-      <body>{children}</body>
+      <body>
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }

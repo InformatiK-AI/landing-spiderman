@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check": "node scripts/check-invariants.mjs",
+    "verify": "npm run typecheck && npm run lint && npm run check && npm run build"
   },
   "dependencies": {
     "framer-motion": "^12.43.0",
