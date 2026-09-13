@@ -17,9 +17,9 @@ export function FilmsSpine({
   children?: React.ReactNode;
 }) {
   return (
-    <section aria-labelledby={CHAPTERS_COPY.headingId} id={CHAPTERS_COPY.headingId}>
+    <section aria-labelledby={`${CHAPTERS_COPY.headingId}-titulo`} id={CHAPTERS_COPY.headingId}>
       <div className="mx-auto max-w-[var(--container-content)] px-gutter pt-section">
-        <SectionHeading id={CHAPTERS_COPY.headingId}>
+        <SectionHeading id={`${CHAPTERS_COPY.headingId}-titulo`}>
           {CHAPTERS_COPY.heading}
         </SectionHeading>
       </div>

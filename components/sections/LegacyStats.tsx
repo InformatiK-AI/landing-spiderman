@@ -12,7 +12,7 @@ import { STATS } from "@/content/stats";
 export function LegacyStats() {
   return (
     <SectionShell
-      labelledBy={STATS_COPY.headingId}
+      labelledBy={`${STATS_COPY.headingId}-titulo`}
       id={STATS_COPY.headingId}
       className="overflow-hidden"
       deferPaint
@@ -20,7 +20,7 @@ export function LegacyStats() {
       <BendayOverlay />
 
       <div className="relative">
-        <SectionHeading id={STATS_COPY.headingId}>{STATS_COPY.heading}</SectionHeading>
+        <SectionHeading id={`${STATS_COPY.headingId}-titulo`}>{STATS_COPY.heading}</SectionHeading>
         <p className="mt-6 text-lead text-ink-300">{STATS_COPY.intro}</p>
 
         <dl className="mt-12 grid gap-10 sm:grid-cols-2">

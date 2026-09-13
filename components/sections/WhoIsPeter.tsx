@@ -10,8 +10,8 @@ import { WHO_IS_PETER } from "@/content/copy";
  */
 export function WhoIsPeter() {
   return (
-    <SectionShell labelledBy={WHO_IS_PETER.headingId} deferPaint>
-      <SectionHeading id={WHO_IS_PETER.headingId}>
+    <SectionShell id={WHO_IS_PETER.headingId} labelledBy={`${WHO_IS_PETER.headingId}-titulo`} deferPaint>
+      <SectionHeading id={`${WHO_IS_PETER.headingId}-titulo`}>
         {WHO_IS_PETER.heading}
       </SectionHeading>
 

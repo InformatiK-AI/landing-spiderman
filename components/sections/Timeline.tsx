@@ -54,12 +54,12 @@ export function Timeline() {
 
   return (
     <section
-      aria-labelledby={TIMELINE_COPY.headingId}
+      aria-labelledby={`${TIMELINE_COPY.headingId}-titulo`}
       id={TIMELINE_COPY.headingId}
       className="relative"
     >
       <div className="mx-auto max-w-[var(--container-content)] px-gutter pt-section">
-        <SectionHeading id={TIMELINE_COPY.headingId}>
+        <SectionHeading id={`${TIMELINE_COPY.headingId}-titulo`}>
           {TIMELINE_COPY.heading}
         </SectionHeading>
         <p className="mt-6 max-w-[var(--container-prose)] text-lead text-ink-300">
@@ -106,11 +106,13 @@ export function Timeline() {
                   }
                 >
                   <m.div
-                    animate={
-                      animateRail
-                        ? { scale: isActive ? 1.06 : 1, opacity: isActive ? 1 : 0.65 }
-                        : undefined
-                    }
+                    // El nodo activo se distingue SOLO por escala. Antes se
+                    // atenuaba a opacity 0.65, y eso hacia que axe midiera el
+                    // texto compuesto contra el fondo y fallara AA: el rojo
+                    // caia a 2.36:1 y el gris a 4.13:1. Atenuar texto para
+                    // decorar es exactamente como se pierde contraste sin
+                    // darse cuenta.
+                    animate={animateRail ? { scale: isActive ? 1.06 : 1 } : undefined}
                     className={
                       (isSolo ? "panel-ink p-6 " : "border-l-2 border-ink-700 pl-4 ") +
                       "max-sm:border-0 max-sm:bg-transparent max-sm:p-0 max-sm:shadow-none " +

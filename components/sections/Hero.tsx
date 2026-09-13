@@ -6,9 +6,12 @@ import { BendayOverlay } from "@/components/art/BendayOverlay";
 import { PortalRing } from "@/components/art/PortalRing";
 import { SkylineLayer } from "@/components/art/SkylineLayers";
 import { SplitLines } from "@/components/motion/SplitLines";
+import { TrailerDialog } from "@/components/trailer/TrailerDialog";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { HERO, STATS_COPY, TIMELINE_COPY } from "@/content/copy";
+import { HERO, TIMELINE_COPY } from "@/content/copy";
+import { getFilm } from "@/content/films";
+import { TRAILERS } from "@/content/trailers";
 import { useReducedMotionSafe } from "@/lib/hooks/useReducedMotionSafe";
 import { DUR, EASE } from "@/lib/motion/tokens";
 
@@ -24,6 +27,10 @@ import { DUR, EASE } from "@/lib/motion/tokens";
  */
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  // El capítulo 3 es el pico emocional de la era, así que es el tráiler que
+  // ofrece el hook. El modal existe sólo acá: en los capítulos el tráiler es
+  // inline, que evita por completo el problema de gestión de foco.
+  const featured = getFilm("no-way-home");
   const reduced = useReducedMotionSafe();
 
   const { scrollYProgress } = useScroll({
@@ -116,9 +123,12 @@ export function Hero() {
             <ButtonLink href={`#${TIMELINE_COPY.headingId}`}>
               {HERO.ctaPrimary}
             </ButtonLink>
-            <ButtonLink variant="ghost" href={`#${STATS_COPY.headingId}`}>
-              {HERO.ctaSecondary}
-            </ButtonLink>
+            <TrailerDialog
+              trailer={TRAILERS[featured.slug]}
+              label={`${featured.titleEs ?? featured.title} — tráiler oficial`}
+              triggerLabel={HERO.ctaSecondary}
+              triggerClassName="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[var(--radius-panel)] border border-ink-700 px-6 py-3 font-display text-kicker uppercase text-ink-100 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-snap)] hocus:-translate-y-0.5 hocus:border-portal-300 motion-reduce:transition-none motion-reduce:hocus:translate-y-0"
+            />
           </div>
         </m.div>
       </m.div>

@@ -44,7 +44,7 @@ export function MultiversePortal() {
 
   return (
     <section
-      aria-labelledby={MULTIVERSE.headingId}
+      aria-labelledby={`${MULTIVERSE.headingId}-titulo`}
       id={MULTIVERSE.headingId}
       className="relative bg-ink-950"
     >
@@ -81,7 +81,7 @@ export function MultiversePortal() {
 
           <div className="relative max-w-[var(--container-prose)] text-center">
             <h2
-              id={MULTIVERSE.headingId}
+              id={`${MULTIVERSE.headingId}-titulo`}
               className="text-display text-ink-050"
             >
               {MULTIVERSE.heading}

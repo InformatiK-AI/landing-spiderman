@@ -21,10 +21,12 @@ import { useYouTubeWarmup } from "./useYouTubeWarmup";
 export function TrailerDialog({
   trailer,
   label,
+  triggerLabel,
   triggerClassName,
 }: {
   trailer: Trailer;
   label: string;
+  triggerLabel?: string;
   triggerClassName?: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -69,7 +71,7 @@ export function TrailerDialog({
         onFocus={warmup}
         className={triggerClassName}
       >
-        {CHAPTERS_COPY.trailerLabel}
+        {triggerLabel ?? CHAPTERS_COPY.trailerLabel}
         <span className="sr-only">: {label}</span>
       </button>
 

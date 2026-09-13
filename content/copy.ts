@@ -7,7 +7,7 @@ export const HERO = {
   lines: ["Nadie iba a recordar su nombre.", "Así que se lo jugó todo."],
   sub: "Homecoming, Lejos de casa, No Way Home y Un Nuevo Día: el arco completo del Spider-Man de Tom Holland, con sus tráilers oficiales.",
   ctaPrimary: "Empezar por el principio",
-  ctaSecondary: "Ir a la cronología",
+  ctaSecondary: "Ver el tráiler",
   scrollCue: "Baja para empezar",
   /** El muro de tags del fondo: el nombre que nadie recuerda. */
   forgottenName: "Peter Parker",

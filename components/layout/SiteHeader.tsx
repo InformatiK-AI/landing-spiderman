@@ -14,7 +14,7 @@ export function SiteHeader() {
       role="banner"
       className="sticky top-0 z-30 border-b border-ink-800 bg-ink-950/85 backdrop-blur-sm"
     >
-      <div className="mx-auto flex max-w-[var(--container-content)] items-center justify-between gap-6 px-gutter py-3">
+      <div className="mx-auto flex max-w-[var(--container-content)] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-gutter py-3">
         <a href="#contenido" className="flex items-center gap-2 text-web-red-500">
           <SpiderGlyph className="size-6" title="Spider-Man: la era Tom Holland" />
           <span className="font-display text-kicker uppercase text-ink-100">
@@ -22,7 +22,7 @@ export function SiteHeader() {
           </span>
         </a>
         <nav aria-label={NAV.sections}>
-          <ul className="flex list-none gap-5 p-0">
+          <ul className="flex list-none flex-wrap justify-end gap-x-4 gap-y-1 p-0">
             {LINKS.map((link) => (
               <li key={link.href}>
                 <a
