@@ -17,8 +17,8 @@
 
 | Campo | Valor |
 |---|---|
-| `phase` | `init` |
-| `stage` | 1 / 8 |
+| `phase` | `spec` |
+| `stage` | 2 / 8 |
 | `blockers` | 0 |
 
 ## Modo de ejecución: manual
@@ -47,7 +47,7 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | # | Etapa | Estado | Artefacto | Notas |
 |---|---|---|---|---|
 | 1 | `init` | ✅ hecho | `.king/registry.md`, `docs/PIPELINE.md`, `docs/BRIEF.md` | Estructura creada |
-| 2 | `spec` | ⏳ pendiente | `.king/spec.md`, `docs/CONTENIDO.md` | Requiere aprobación |
+| 2 | `spec` | ✅ hecho | `.king/spec.md`, `docs/CONTENIDO.md`, `docs/DESIGN.md` | 7 requirements, 12 scenarios |
 | 3 | `tasks` | ⏳ pendiente | `.king/tasks.md` + issues en GitHub | — |
 | 4 | `build` | ⏳ pendiente | código | 1 issue = 1 commit |
 | 5 | `review` | ⏳ pendiente | `.king/review.md` | Dual-blind |
@@ -60,6 +60,7 @@ se migra al CLI real y este archivo pasa a ser generado por la herramienta.
 | Puerta | Etapa | Criterio | Resultado | Fecha |
 |---|---|---|---|---|
 | G-init | `init` | Registry y estructura existen | ✅ pasa | 2026-09-13 |
+| G-spec | `spec` | Requirements + scenarios + inventario verificado + aprobación | ✅ pasa | 2026-09-13 |
 
 ## Conteos esperados (verificación tipo Gate 24)
 
