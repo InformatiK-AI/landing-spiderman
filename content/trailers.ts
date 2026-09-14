@@ -14,8 +14,14 @@ import type { EnsembleSlug, FilmSlug, Trailer } from "./types";
  * corresponde a ese título, pero NO confirma la propiedad del canal.
  *
  * Hay canales de fans y de "concept trailers" usando títulos casi idénticos, así
- * que estos IDs necesitan una apertura manual antes de considerarse correctos.
- * Al marcar uno como `verified: true`, el aviso de dev desaparece solo.
+ * que estos IDs necesitan una comprobación contra el canal antes de
+ * considerarse correctos. Al marcar uno como `verified: true`, el aviso de dev
+ * desaparece solo.
+ *
+ * Para comprobarlos desde una red que alcance YouTube:
+ *
+ *     npm run verify-trailers            # informa: título y canal de cada ID
+ *     npm run verify-trailers -- --write # marca verified: true los que pasan
  */
 export const TRAILERS: Readonly<Record<FilmSlug | EnsembleSlug, Trailer>> = {
   homecoming: {

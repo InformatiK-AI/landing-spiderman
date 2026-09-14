@@ -111,5 +111,9 @@ una instalación existente.
 
 YouTube está bloqueado por la política de red de la sesión (`403 CONNECT`, *policy denial*
 para `www.youtube.com:443`). Los 7 IDs salen con `verified: false`, con enlace de respaldo
-visible y aviso en dev. Requieren una apertura manual; cada corrección es una línea en
-`content/trailers.ts`.
+visible y aviso en dev. Cada corrección es una línea en `content/trailers.ts`.
+
+**Remedio**: `npm run verify-trailers` desde una red sin bloqueo. Consulta oEmbed por cada
+ID y contrasta el título y **el canal**, que es lo que la verificación cruzada por búsqueda
+web no podía confirmar. Con `-- --write` marca `verified: true` sólo los que cuelgan de un
+canal oficial; los demás los reporta para revisarlos a mano.

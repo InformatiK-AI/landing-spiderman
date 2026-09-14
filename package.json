@@ -13,7 +13,8 @@
     "check": "node scripts/check-invariants.mjs",
     "verify": "npm run typecheck && npm run lint && npm run check && npm run build",
     "qa": "node qa/audit.mjs",
-    "file-issues": "node scripts/file-issues.mjs"
+    "file-issues": "node scripts/file-issues.mjs",
+    "verify-trailers": "node scripts/verify-trailers.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.43.0",

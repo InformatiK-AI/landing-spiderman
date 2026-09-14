@@ -31,6 +31,8 @@ npm run check      # invariantes del proyecto (ver abajo)
 npm test           # integridad de la capa de contenido
 npm run verify     # typecheck + lint + check + build
 npm run qa         # auditoría en navegador (requiere npm run start corriendo)
+npm run verify-trailers      # contrasta los IDs de YouTube contra oEmbed
+npm run file-issues -- --dry-run  # previsualiza los issues de .king/issues.json
 ```
 
 ## Estructura
